@@ -14,9 +14,9 @@ const List = () => {
     dispatch(getList());
   }, [dispatch]);
 
-  if (list.status === "loading") return <Loader />;
+  if (list.status === "loading") return <Loader data-testid="List#Loader" />;
   return (
-    <ListStyles.ListContainer>
+    <ListStyles.ListContainer data-testid="List#Container">
       {photo.data ? (
         <Photo photo={photo.data} />
       ) : (

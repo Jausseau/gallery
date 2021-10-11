@@ -18,15 +18,20 @@ const Search = () => {
 
   return (
     <SearchStyles.Container>
-      <label htmlFor="search-gallery">Search</label>
+      <label htmlFor="search-gallery" data-testid="Search#Label">
+        Search
+      </label>
       <input
+        data-testid="Search#Input"
         name="search-gallery"
         onChange={(e) => setSearchValue(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && search()}
         value={searchValue}
       />
-      <button onClick={search}>Search a photo</button>
-      <button onClick={reset} disabled={!photo.data}>
+      <button onClick={search} data-testid="Search#Button">
+        Search a photo
+      </button>
+      <button onClick={reset} disabled={!photo.data} data-testid="Search#Reset">
         Reset search
       </button>
     </SearchStyles.Container>
