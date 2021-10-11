@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../../../app/store";
 import { PhotoType } from "../types";
+import { toast } from "react-toastify";
 
 export interface GalleryState {
   list: {
@@ -26,21 +27,29 @@ const initialState: GalleryState = {
   },
 };
 
-export const getList = createAsyncThunk("gallery/getList", async () => {
-  const response = await axios.get<PhotoType[]>(
-    "https://picsum.photos/v2/list"
-  );
-  return response.data;
-});
+export const getList = createAsyncThunk(
+  "gallery/getList",
+  async () =>
+    await axios
+      .get<PhotoType[]>("https://picsum.photos/v2/list")
+      .then((response) => response.data)
+      .catch((error) => {
+        toast.error(error.response.data);
+        return [];
+      })
+);
 
 export const getPhoto = createAsyncThunk(
   "gallery/getPhoto",
   async (search?: string) => {
     if (!search) return null;
-    const response = await axios.get<PhotoType>(
-      `https://picsum.photos/id/${search}/info`
-    );
-    return response.data;
+    return await axios
+      .get<PhotoType>(`https://picsum.photos/id/${search}/info`)
+      .then((response) => response.data)
+      .catch((error) => {
+        toast.error(error.response.data);
+        return null;
+      });
   }
 );
 
