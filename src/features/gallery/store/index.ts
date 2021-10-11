@@ -69,12 +69,18 @@ export const gallerySlice = createSlice({
       .addCase(getList.pending, (state) => {
         state.list.status = "loading";
       })
+      .addCase(getList.rejected, (state) => {
+        state.list.status = "failed";
+      })
       .addCase(getList.fulfilled, (state, action) => {
         state.list.status = "fulfilled";
         state.list.data = action.payload;
       })
       .addCase(getPhoto.pending, (state) => {
         state.photo.status = "loading";
+      })
+      .addCase(getPhoto.rejected, (state) => {
+        state.photo.status = "failed";
       })
       .addCase(getPhoto.fulfilled, (state, action) => {
         state.photo.data = action.payload;
