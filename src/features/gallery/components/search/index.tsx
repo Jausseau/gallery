@@ -1,20 +1,34 @@
 import React from "react";
-import usePhoto from "../../hooks/use-photo";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { getPhoto, selectPhoto } from "../../store";
 import SearchStyles from "./styles";
 
 const Search = () => {
   const [searchValue, setSearchValue] = React.useState("");
-  const { search } = usePhoto();
+  const dispatch = useAppDispatch();
+  const photo = useAppSelector(selectPhoto);
+
+  const search = React.useCallback(() => {
+    dispatch(getPhoto(searchValue));
+  }, [dispatch, searchValue]);
+
+  const reset = React.useCallback(() => {
+    dispatch(getPhoto());
+  }, [dispatch]);
 
   return (
     <SearchStyles.Container>
       <label htmlFor="search-gallery">Search</label>
       <input
         name="search-gallery"
-        value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && search()}
+        value={searchValue}
       />
-      <button onClick={() => search(searchValue)}>Search the photo</button>
+      <button onClick={search}>Search a photo</button>
+      <button onClick={reset} disabled={!photo.data}>
+        Reset search
+      </button>
     </SearchStyles.Container>
   );
 };

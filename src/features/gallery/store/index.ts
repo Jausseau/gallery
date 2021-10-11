@@ -34,7 +34,8 @@ export const getList = createAsyncThunk("gallery/getList", async () => {
 
 export const getPhoto = createAsyncThunk(
   "gallery/getPhoto",
-  async (search: string) => {
+  async (search?: string) => {
+    if (!search) return null;
     const response = await axios.get<PhotoType>(
       `https://picsum.photos/id/${search}/info`
     );
@@ -66,8 +67,8 @@ export const gallerySlice = createSlice({
         state.photo.status = "loading";
       })
       .addCase(getPhoto.fulfilled, (state, action) => {
-        state.photo.status = "fulfilled";
         state.photo.data = action.payload;
+        state.photo.status = action.payload === null ? "idle" : "fulfilled";
       });
   },
 });
