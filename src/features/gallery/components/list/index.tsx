@@ -1,8 +1,10 @@
 import React from "react";
+
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { getList, selectList, selectPhoto } from "../../store";
 import Loader from "../loader";
 import Photo from "../photo";
+
 import ListStyles from "./styles";
 
 const List = () => {

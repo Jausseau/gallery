@@ -1,7 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
 import axios from "axios";
-import reducer, { GalleryState, getList, getPhoto, list, photo } from ".";
+import { configureStore } from "@reduxjs/toolkit";
+
 import { PhotoType } from "../types";
+
+import reducer, { GalleryState, getList, getPhoto, list, photo } from ".";
 
 const initialState: GalleryState = {
   list: {

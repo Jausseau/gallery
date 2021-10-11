@@ -1,6 +1,7 @@
-import { render } from "@testing-library/react";
-import Photo from ".";
+import { render, screen } from "../../../../utils/test";
 import { PhotoType } from "../../types";
+
+import Photo from ".";
 
 const photo: PhotoType = {
   author: "Me",
@@ -13,11 +14,11 @@ const photo: PhotoType = {
 
 describe("Photo", () => {
   it("should have the open button, the img and the author", () => {
-    const { getByTestId } = render(<Photo photo={photo} />);
+    render(<Photo photo={photo} />);
 
-    expect(getByTestId("Photo#OpenUrl")).toBeVisible();
-    expect(getByTestId("Photo#Img")).toBeVisible();
-    expect(getByTestId("Photo#Author")).toBeVisible();
-    expect(getByTestId("Photo#Author")).toHaveTextContent(photo.author);
+    expect(screen.getByTestId("Photo#OpenUrl")).toBeVisible();
+    expect(screen.getByTestId("Photo#Img")).toBeVisible();
+    expect(screen.getByTestId("Photo#Author")).toBeVisible();
+    expect(screen.getByTestId("Photo#Author")).toHaveTextContent(photo.author);
   });
 });

@@ -1,4 +1,4 @@
-import GalleryStyles from "../styles";
+import GalleryStyles from "./styles";
 import List from "./components/list";
 import Search from "./components/search";
 

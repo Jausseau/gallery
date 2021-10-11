@@ -12,8 +12,6 @@ const NavList = styled.ul`
   }
 `;
 
-const RouterStyles = {
-  NavList,
-};
+const RouterStyles = { NavList };
 
 export default RouterStyles;

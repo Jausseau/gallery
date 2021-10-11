@@ -1,5 +1,6 @@
-import List from ".";
 import { render, screen } from "../../../../utils/test";
+
+import List from ".";
 
 describe("List", () => {
   it("should have loader at start", () => {

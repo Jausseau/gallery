@@ -14,10 +14,11 @@ const photo: PhotoType = {
   url: "some-url",
   width: 100,
 };
-describe("Search", () => {
-  it("should have label, input, button and reset", () => {
-    render(<Search />);
 
+describe("Search", () => {
+  beforeEach(() => render(<Search />));
+
+  it("should have label, input, button and reset", () => {
     expect(screen.getByTestId("Search#Label")).toBeVisible();
     expect(screen.getByTestId("Search#Button")).toBeVisible();
     expect(screen.getByTestId("Search#Input")).toBeVisible();
@@ -26,7 +27,6 @@ describe("Search", () => {
   });
 
   it("should change input value", () => {
-    render(<Search />);
     const input = screen.getByTestId("Search#Input");
 
     userEvent.type(input, "237");
@@ -35,7 +35,6 @@ describe("Search", () => {
   });
 
   it("should change input value", async () => {
-    render(<Search />);
     const input = screen.getByTestId("Search#Input");
 
     userEvent.type(input, "237");

@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router";
+
 import { Counter } from "../features/counter/Counter";
 import Gallery from "../features/gallery";
 

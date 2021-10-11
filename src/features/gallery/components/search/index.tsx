@@ -1,10 +1,13 @@
 import React from "react";
+
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { getPhoto, selectPhoto } from "../../store";
+
 import SearchStyles from "./styles";
 
 const Search = () => {
   const [searchValue, setSearchValue] = React.useState("");
+
   const dispatch = useAppDispatch();
   const photo = useAppSelector(selectPhoto);
 
@@ -24,8 +27,8 @@ const Search = () => {
       <input
         data-testid="Search#Input"
         name="search-gallery"
-        onChange={(e) => setSearchValue(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && search()}
+        onChange={(event) => setSearchValue(event.target.value)}
+        onKeyDown={(event) => event.key === "Enter" && search()}
         value={searchValue}
       />
       <button onClick={search} data-testid="Search#Button">
